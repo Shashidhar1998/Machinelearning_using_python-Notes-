@@ -1,0 +1,38 @@
+For nLp in machine learning there are 6 tasks
+     1.Tokenize
+     using python
+     
+     //first import nltk(natural language tool Kit)
+     
+     import nltk
+     
+     //create sample_text
+    text = "Mar had a little lamb. Her fleece was white as now"
+     
+     //import sentence and word tokenizers
+     
+     from nltk.tokenize import word_tokenize , sent_tokenize
+     
+     sentences = word_tokenize(text) 
+     
+     //may cause eeror to solve  nltk.download('punkt') and run in jupyter notes
+     
+     //output ['Mar had a little lamb.', 'Her fleece was white as now'] when u print sentences
+     words = sent_tokenize(text) //
+     
+     output  ['Mar', 'had', 'a', 'little', 'lamb', '.', 'Her', 'fleece', 'was', 'white', 'as', 'now']
+      
+      2. Remove stop words in text  (remove punctuations and words lik a has an and so on)
+      
+      import nltk
+      nltk.download('stopwords')
+     from  nltk.corpus import stopwords
+     from string import punctuation
+      customwords = set(stopwords.words('english') + list(punctuation))
+      
+      syntax is
+      
+      WordsWOStopwords = [words for words in word_tokenize(text) if words not in customwords]
+      
+      //  ['Mar', 'little', 'lamb', 'Her', 'fleece', 'white']
+     
