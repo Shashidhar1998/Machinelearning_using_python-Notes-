@@ -35,4 +35,67 @@ For nLp in machine learning there are 6 tasks
       WordsWOStopwords = [words for words in word_tokenize(text) if words not in customwords]
       
       //  ['Mar', 'little', 'lamb', 'Her', 'fleece', 'white']
+      
+      
+      3.Bigrams (dependency between words)
+      
+      from nltk.collocations import *
+      biggram_measures = nltk.collocations.BigramAssocMeasures()
+      finder = BigramCollocationFinder.from_words(WordsWOStopwords) //<nltk.collocations.BigramCollocationFinder object at 0x000001FDE28935F8>
+      sorted(finder.ngram_fd.items())  
+      
+      //[(('Her', 'fleece'), 1),
+        (('Mar', 'little'), 1),
+        (('fleece', 'white'), 1),
+        (('lamb', 'Her'), 1),
+        (('little', 'lamb'), 1)]
+        
+        
+        4. Stemming using lancasterstemmer
+        
+        text2 = "Mary closed on closing night when she was in the mood to close"
+        from nltk.stem.lancaster import LancasterStemmer
+        st = LancasterStemmer()
+        stemmedwords = [st.stem(word) for word in word_tokenize(text2)]
+        print(stemmedwords)
+        ['mary', 'clos', 'on', 'clos', 'night', 'when', 'she', 'was', 'in', 'the', 'mood', 'to', 'clos']
+        
+        5.Give parts of speech to stemmedwords
+        
+        nltk.download('averaged_perceptron_tagger', force=True)
+        nltk.pos_tag(word_tokenize(text2))  
+        
+        [('Mary', 'NNP'),
+         ('closed', 'VBD'),
+         ('on', 'IN'),
+        ('closing', 'NN'),
+      ('night', 'NN'),
+        ('when', 'WRB'),
+         ('she', 'PRP'),
+             ('was', 'VBD'),
+            ('in', 'IN'),
+             ('the', 'DT'),
+            ('mood', 'NN'),
+           ('to', 'TO'),
+          ('close', 'VB')]
+ 
+          6. word sense disambiguition
+          
+                  a.Definition of word or meaning
+                  from nltk.corpus import wordnet as wn
+                  for ss in wn.synsets('health'):
+                  print(ss,ss.definition())
+                  
+                  Synset('health.n.01') a healthy state of wellbeing free from disease
+                  Synset('health.n.02') the general condition of body and mind
+                  
+                  b.meaning in sentence
+                  from nltk.wsd import lesk
+                  ss1 = lesk(word_tokenize("sing in a lower tone, along with bass"),'bass')
+                  print(ss1,ss1.definition())
+      
+      
+      
+      
+      
      
