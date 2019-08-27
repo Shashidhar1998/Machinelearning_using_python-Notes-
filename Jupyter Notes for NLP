@@ -100,6 +100,41 @@ For nLp in machine learning there are 6 tasks
       NLP problems 
       1.auto summarising text using rule based approach
       
+      from urllib.request import urlopen
+      from bs4 import BeautifulSoup
+      articleurl = "https://www.washingtonpost.com/world/the_americas/now-begins-the-biggest-challenge-of-the-amazon-fires-putting-them-out/2019/08/26/43c526d0-c80b-11e9-9615-8f1a32962e04_story.html"
+      page2 = urlopen(articleurl).read().decode('utf8','ignore')
+      pip install -U beautifulsoup4
+      
+      soup = BeautifulSoup(page2,'1xml') if error then 
+      
+      pip install lxml
+      soup = BeautifulSoup(page2,'lxml')
+      soup.find('article')
+      soup.find('article').text
+      
+      text1 = ' '.join(map(lambda p : p.text , soup.find_all('article')))
+      
+      or function for parsing webdata to text
+      def Webtotext(url):
+          page2 = urlopen(url).read().decode('utf8','ignore')
+          soup = BeautifulSoup(page2,'lxml')
+          text1 = ' '.join(map(lambda p : p.text , soup.find_all('article')))
+          return text1.encode('ascii',errors = 'replace').replace("?","")
+          
+          
+          
+        b.
+        sents = sent_tokenize(text1)
+        sents
+        word_sent = word_tokenize(text1.lower())
+        _stopwords = set(stopwords.words('english') + list(punctuation))
+        word_sent = [words for words in word_sent if words not in _stopwords]
+        
+        
+        c.
+        from nltk import FreqDist
+      
       2.classifying text using machine learning
       
       
