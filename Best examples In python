@@ -1,0 +1,5 @@
+1.Simple way to get data from web page using python
+from urllib.request import urlopen
+html = urlopen("http://www.google.com/")
+print(  html.read()  )
+
