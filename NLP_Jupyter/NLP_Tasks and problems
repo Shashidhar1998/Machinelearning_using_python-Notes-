@@ -1,0 +1,140 @@
+For nLp in machine learning there are 6 tasks
+     1.Tokenize
+     using python
+     
+     //first import nltk(natural language tool Kit)
+     
+     import nltk
+     
+     //create sample_text
+    text = "Mar had a little lamb. Her fleece was white as now"
+     
+     //import sentence and word tokenizers
+     
+     from nltk.tokenize import word_tokenize , sent_tokenize
+     
+     sentences = word_tokenize(text) 
+     
+     //may cause eeror to solve  nltk.download('punkt') and run in jupyter notes
+     
+     //output ['Mar had a little lamb.', 'Her fleece was white as now'] when u print sentences
+     words = sent_tokenize(text) //
+     
+     output  ['Mar', 'had', 'a', 'little', 'lamb', '.', 'Her', 'fleece', 'was', 'white', 'as', 'now']
+      
+      2. Remove stop words in text  (remove punctuations and words lik a has an and so on)
+      
+      import nltk
+      nltk.download('stopwords')
+     from  nltk.corpus import stopwords
+     from string import punctuation
+      customwords = set(stopwords.words('english') + list(punctuation))
+      
+      syntax is
+      
+      WordsWOStopwords = [words for words in word_tokenize(text) if words not in customwords]
+      
+      //  ['Mar', 'little', 'lamb', 'Her', 'fleece', 'white']
+      
+      
+      3.Bigrams (dependency between words)
+      
+      from nltk.collocations import *
+      biggram_measures = nltk.collocations.BigramAssocMeasures()
+      finder = BigramCollocationFinder.from_words(WordsWOStopwords) //<nltk.collocations.BigramCollocationFinder object at 0x000001FDE28935F8>
+      sorted(finder.ngram_fd.items())  
+      
+      //[(('Her', 'fleece'), 1),
+        (('Mar', 'little'), 1),
+        (('fleece', 'white'), 1),
+        (('lamb', 'Her'), 1),
+        (('little', 'lamb'), 1)]
+        
+        
+        4. Stemming using lancasterstemmer
+        
+        text2 = "Mary closed on closing night when she was in the mood to close"
+        from nltk.stem.lancaster import LancasterStemmer
+        st = LancasterStemmer()
+        stemmedwords = [st.stem(word) for word in word_tokenize(text2)]
+        print(stemmedwords)
+        ['mary', 'clos', 'on', 'clos', 'night', 'when', 'she', 'was', 'in', 'the', 'mood', 'to', 'clos']
+        
+        5.Give parts of speech to stemmedwords
+        
+        nltk.download('averaged_perceptron_tagger', force=True)
+        nltk.pos_tag(word_tokenize(text2))  
+        
+        [('Mary', 'NNP'),
+         ('closed', 'VBD'),
+         ('on', 'IN'),
+        ('closing', 'NN'),
+      ('night', 'NN'),
+        ('when', 'WRB'),
+         ('she', 'PRP'),
+             ('was', 'VBD'),
+            ('in', 'IN'),
+             ('the', 'DT'),
+            ('mood', 'NN'),
+           ('to', 'TO'),
+          ('close', 'VB')]
+ 
+          6. word sense disambiguition
+          
+                  a.Definition of word or meaning
+                  from nltk.corpus import wordnet as wn
+                  for ss in wn.synsets('health'):
+                  print(ss,ss.definition())
+                  
+                  Synset('health.n.01') a healthy state of wellbeing free from disease
+                  Synset('health.n.02') the general condition of body and mind
+                  
+                  b.meaning in sentence
+                  from nltk.wsd import lesk
+                  ss1 = lesk(word_tokenize("sing in a lower tone, along with bass"),'bass')
+                  print(ss1,ss1.definition())
+      
+      
+      
+      
+      NLP problems 
+      1.auto summarising text using rule based approach
+      
+      from urllib.request import urlopen
+      from bs4 import BeautifulSoup
+      articleurl = "https://www.washingtonpost.com/world/the_americas/now-begins-the-biggest-challenge-of-the-amazon-fires-putting-them-out/2019/08/26/43c526d0-c80b-11e9-9615-8f1a32962e04_story.html"
+      page2 = urlopen(articleurl).read().decode('utf8','ignore')
+      pip install -U beautifulsoup4
+      
+      soup = BeautifulSoup(page2,'1xml') if error then 
+      
+      pip install lxml
+      soup = BeautifulSoup(page2,'lxml')
+      soup.find('article')
+      soup.find('article').text
+      
+      text1 = ' '.join(map(lambda p : p.text , soup.find_all('article')))
+      
+      or function for parsing webdata to text
+      def Webtotext(url):
+          page2 = urlopen(url).read().decode('utf8','ignore')
+          soup = BeautifulSoup(page2,'lxml')
+          text1 = ' '.join(map(lambda p : p.text , soup.find_all('article')))
+          return text1.encode('ascii',errors = 'replace').replace("?","")
+          
+          
+          
+        b.
+        sents = sent_tokenize(text1)
+        sents
+        word_sent = word_tokenize(text1.lower())
+        _stopwords = set(stopwords.words('english') + list(punctuation))
+        word_sent = [words for words in word_sent if words not in _stopwords]
+        
+        
+        c.
+        from nltk import FreqDist
+      
+      2.classifying text using machine learning
+      
+      
