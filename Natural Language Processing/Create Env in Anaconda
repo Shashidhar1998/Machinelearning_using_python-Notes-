@@ -1,0 +1,17 @@
+To create virtual env in anaconda
+download .yml file in udemy or take from Natural Language Processing folder go to folder in localsystem
+
+      ------------->conda env create -f nlp_course_env.yml
+      
+      
+ To activate env
+ 
+      ------------->conda activate nlp_course(env variable)
+ 
+ to deactivate env 
+ 
+     --------------> conda deactivate
+     
+ To open jupyter notebook 
+ 
+    _--------------> jupyter notebook
