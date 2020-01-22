@@ -1,0 +1,22 @@
+
+# f- string literal
+Person  = "Shashidhar"
+print("My name is {}".format(Person)) # traditional way
+
+# f-string literals
+print(f"My name is {Person}")
+dict = {'a':123, 'b':456}
+print(f" My number is {dict['a']}")
+myList = ['0','1','2'] #type = string
+myList1 = [0,1,2] #type = Number
+print(f" My number is {myList[0]} ")
+
+library = [('Author','Topic','Pages'),('George','Physics','534'),('John','Yoga','56'),('kurin','science','546')]
+
+for book in library:
+    print(book) for whole tuple or 
+    print(f"Author is {book[0]}") for index
+
+
+
+
