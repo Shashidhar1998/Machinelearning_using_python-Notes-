@@ -16,7 +16,29 @@ library = [('Author','Topic','Pages'),('George','Physics','534'),('John','Yoga',
 for book in library:
     print(book) for whole tuple or 
     print(f"Author is {book[0]}") for index
+    
+for Author,Topic,Pages in library:
+    print(f"Author is {Author}")
+    
+for Author,Topic,Pages in library:
+    print(f"{Author:{10}} {Topic:{30}}  {Pages:>{10}}")  for text formatting like Topic takes 10 spaces 
 
+
+date Formatting
+
+from datetime import datetime
+
+today = datetime(year = 2020,month = 01, day = 22)
+
+print(f"{today:%B %d, %Y}")   # output : January 22, 2020  for more formatting visit http://www.strftime.org
+
+
+---------------------------------WORKING ON TEXT FILES:-----------------
+It works only in jupyter notes(%%writefile test.txt)
+it creates the file named test.txt 
+%%writefile test.txt
+This the text file.
+This is the second line in text file.
 
 
 
