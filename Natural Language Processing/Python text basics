@@ -40,5 +40,27 @@ it creates the file named test.txt
 This the text file.
 This is the second line in text file.
 
+myfile = open('text.txt') //add the path
+
+to read the content of file
+
+myfile.read()
+if u try to  read again myfile.read()// will print nothing because the cursor is at end
+
+to reset the cursor
+myfile.seek(0)
+
+mycontent = myfile.read()
+
+to close file 
+myfile.close()
+
+
+open file as a context manager
+with open('text.txt') as myfile:
+     // myfile.readlines is used to storelines in list ex: ["This the text file.\n","This is the second line in text file."]
+     content = myfile.readlines()  // do operations inside the block and you don't have to close the file if we use context manager
+     
+
 
 
